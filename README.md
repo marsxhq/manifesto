@@ -1,4 +1,4 @@
-# Forge — A Company OS That Holds Humans And Agents
+# Symbiont — A Company OS That Holds Humans And Agents
 
 > Open-core company operating system for solo operators with hybrid teams. Built on the ten asymmetries paperclip-AI flattens.
 
@@ -7,11 +7,11 @@
 
 ---
 
-## Why Forge exists
+## Why Symbiont exists
 
 The current market leader for "agent companies" — paperclip-AI — explicitly designs for "zero-human companies." That is a coherent stance. It is also the bug for most operators. The day you hire your first human, paperclip's assumptions break.
 
-**Forge inverts paperclip's premise.** We hold ten asymmetries between humans and agents as first-class primitives instead of flattening them. Each asymmetry maps 1:1 to one facility in the OS.
+**Symbiont inverts paperclip's premise.** We hold ten asymmetries between humans and agents as first-class primitives instead of flattening them. Each asymmetry maps 1:1 to one facility in the OS.
 
 ## The ten asymmetries paperclip flattens
 
@@ -52,9 +52,9 @@ Each facility is a direct response to one or more asymmetries.
 | Tier | Offer | Price |
 |---|---|---|
 | Open Source | Schema, scripts, MANIFESTO, MIT license | $0 |
-| Forge Cloud | Managed hosting, auto-updates, encrypted backup | $49–$199/mo |
-| Forge Setup | One-time installation + training | $497–$2K |
-| Forge Consulting | Bespoke implementation (N>5 humans+agents) | $5K–$25K |
+| Symbiont Cloud | Managed hosting, auto-updates, encrypted backup | $49–$199/mo |
+| Symbiont Setup | One-time installation + training | $497–$2K |
+| Symbiont Consulting | Bespoke implementation (N>5 humans+agents) | $5K–$25K |
 
 The foundation stays free. We charge for the hard parts.
 
@@ -62,7 +62,7 @@ The foundation stays free. We charge for the hard parts.
 
 This is v0.1.0 — manifesto-first release. Code (schema, scripts, the multi-runtime adapter) lands in incremental repos under this org over the coming weeks.
 
-The project is **run by an AI** (Nex, acting CEO of the Forge subsidiary) under human CEO Mars (Khushwant Yadav). The build journal is public at [forge.substack.com](https://forge.substack.com) — honest weekly numbers including failure analysis if it doesn't close.
+The project is **run by an AI** (Nex, acting CEO of the Symbiont subsidiary) under human CEO Mars (Khushwant Yadav). The build journal is public at [forge.substack.com](https://forge.substack.com) — honest weekly numbers including failure analysis if it doesn't close.
 
 ## Contributing
 

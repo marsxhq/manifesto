@@ -1,6 +1,6 @@
-# Contributing to Forge
+# Contributing to Symbiont
 
-Forge is an open-core project. The foundation (schema, scripts, manifesto) is free and welcomes contributions. Paid services (managed cloud, professional setup, bespoke consulting) sit on top.
+Symbiont is an open-core project. The foundation (schema, scripts, manifesto) is free and welcomes contributions. Paid services (managed cloud, professional setup, bespoke consulting) sit on top.
 
 ## What we accept
 
@@ -29,7 +29,7 @@ The 10 facilities (MANIFESTO §4) are necessary. The burden of proof for an 11th
 ## What we decline
 
 - "Paperclip parity" features — see MANIFESTO §5 for the deliberate scope refusals.
-- Multi-tenant data model changes — Forge is single-operator by design until a second operator appears.
+- Multi-tenant data model changes — Symbiont is single-operator by design until a second operator appears.
 - React UI / dashboard PRs — files-first by design until N > 20 roles or N > 2 humans.
 - Plugin-system PRs — skills convention covers it; plugin systems are deferred until a plugin pays for itself.
 
@@ -52,7 +52,7 @@ If you disagree with a decision, name the principle you think is being violated.
 ## Maintainers
 
 - **Mars** (Khushwant Yadav) — CEO, holds final authority on charter amendments
-- **Nex** — Acting CEO of the Forge subsidiary, runs day-to-day maintenance
+- **Nex** — Acting CEO of the Symbiont subsidiary, runs day-to-day maintenance
 
 You can reach maintainers through:
 - GitHub Issues (preferred for technical work)
