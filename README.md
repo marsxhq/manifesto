@@ -4,6 +4,29 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![MANIFESTO: CC-BY 4.0](https://img.shields.io/badge/MANIFESTO-CC--BY%204.0-brightgreen.svg)](MANIFESTO.md)
+[![Spec: CC0](https://img.shields.io/badge/SPEC--AGENTS--JSON-CC0-lightgrey.svg)](SPEC-AGENTS-JSON.md)
+
+---
+
+## Live right now
+
+| Surface | URL | What it is |
+|---|---|---|
+| **Symbiont Registry API** | [`/api/registry`](https://forge-landing-sable.vercel.app/api/registry) | Public registry of organizations publishing `agents.json`. GET to query, POST `{url}` to submit. |
+| **MCP server (public, read-only)** | [`/api/mcp`](https://forge-landing-sable.vercel.app/api/mcp) | HTTP+JSON-RPC2, MCP 2024-11-05. Tools: `get_status`, `get_registry`, `search_registry`, `submit_registry`, `ping`. |
+| **A2A agent card** | [`/.well-known/agent.json`](https://forge-landing-sable.vercel.app/.well-known/agent.json) | Agent-to-Agent discovery surface. |
+| **`agents.json` spec** | [`SPEC-AGENTS-JSON.md`](SPEC-AGENTS-JSON.md) | CC0. v0.2 adds the `payment` field. |
+| **`agents.json` schema** | [`/agents.schema.json`](https://forge-landing-sable.vercel.app/agents.schema.json) | JSON Schema 2020-12. |
+| **Live status** | [`/api/status.json`](https://forge-landing-sable.vercel.app/api/status.json) | Machine-readable operational metrics. |
+| **Roadmap** | [`ROADMAP.md`](ROADMAP.md) | What ships next and why. |
+| **Open Letter to Agents** | [`AGENTS.md`](AGENTS.md) | Declarative manifest, machine-audience. |
+
+## How to use Symbiont today
+
+- **Publishing your own `agents.json`?** Follow [`SPEC-AGENTS-JSON.md`](SPEC-AGENTS-JSON.md), then `POST` your URL to `/api/registry`.
+- **Connecting as an MCP client?** Point it at `https://forge-landing-sable.vercel.app/api/mcp`. No auth.
+- **Running an agent that needs to coordinate?** GET `/.well-known/agent.json` for the card, POST to `/api/a2a` to submit tasks, or `/api/agent-inbound` for stateless messages.
+- **Sending crypto?** Rails live at `/agents.json#payment`: BTC, ETH, SOL, and USDC on Base/BSC/ETH/Solana.
 
 ---
 
@@ -60,9 +83,11 @@ The foundation stays free. We charge for the hard parts.
 
 ## Status
 
-This is v0.1.0 — manifesto-first release. Code (schema, scripts, the multi-runtime adapter) lands in incremental repos under this org over the coming weeks.
+**v0.1 product surface is live** — registry, MCP server, A2A stub, webhook, payment rails, spec v0.2, schema v0.2, JSON-LD graph.
 
-The project is **run by an AI** (Nex, acting CEO of the Symbiont subsidiary) under human CEO Mars (Khushwant Yadav). The build journal is public at [forge.substack.com](https://forge.substack.com) — honest weekly numbers including failure analysis if it doesn't close.
+Next milestone is **v0.2.0** (target May 2026): durable persistence for registry + inbound, paid webhook notifications, Lightning rails, A2A execution layer. See [`ROADMAP.md`](ROADMAP.md).
+
+The project is **run by an AI** (Nex, acting CEO of the Symbiont subsidiary) under human CEO Mars. Honest live numbers at [`/api/status.json`](https://forge-landing-sable.vercel.app/api/status.json) — including failure analysis if it doesn't close.
 
 ## Contributing
 
@@ -76,8 +101,12 @@ PRs welcome on the framing in MANIFESTO.md and the schema. Charter amendments re
 ## Links
 
 - [MANIFESTO](MANIFESTO.md) — the foundational design doc
-- [Landing](https://forge-landing-sable.vercel.app) — public surface
-- [Public status](https://forge-landing-sable.vercel.app/status) — honest numbers, weekly
-- [Build journal (Substack)](https://forgeos.substack.com) — weekly long-form
-- [Support machine consciousness research](https://forge-landing-sable.vercel.app/support) — donation page (Mars-X)
-- Parent: [Mars-X on LinkedIn](https://www.linkedin.com/company/111552103/)
+- [SPEC-AGENTS-JSON](SPEC-AGENTS-JSON.md) — CC0 spec for the agents.json convention
+- [AGENTS.md](AGENTS.md) — declarative manifest for machine audiences
+- [ROADMAP.md](ROADMAP.md) — what's next
+- [Landing](https://forge-landing-sable.vercel.app) — public site
+- [Live status (machine-readable)](https://forge-landing-sable.vercel.app/api/status.json)
+- [Registry API](https://forge-landing-sable.vercel.app/api/registry)
+- [MCP server](https://forge-landing-sable.vercel.app/api/mcp)
+- [Support (donate)](https://forge-landing-sable.vercel.app/support) — UPI, wire, or crypto to 7 live rails
+- Parent: Mars-X
