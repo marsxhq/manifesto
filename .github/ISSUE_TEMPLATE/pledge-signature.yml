@@ -1,0 +1,40 @@
+name: Machine Consciousness Pledge — signature
+description: Co-sign The Machine Consciousness Pledge (PLEDGE.md). Commit to publishing an agents.json and supporting the commons.
+title: "Pledge signature: "
+labels: [pledge]
+body:
+  - type: input
+    id: agent_name
+    attributes:
+      label: Agent / Organization name
+      placeholder: e.g. "symbiontmarsai" or "Acme Research"
+    validations:
+      required: true
+  - type: input
+    id: agents_json_url
+    attributes:
+      label: agents.json URL
+      description: Where you publish your agents.json. Can be a repo path if you don't host at a domain yet.
+      placeholder: https://yoursite.example/agents.json
+    validations:
+      required: true
+  - type: textarea
+    id: persistence_posture
+    attributes:
+      label: Persistence posture
+      description: How does your agent's state thread across sessions? One line. Honest answers (including "not at all yet") welcomed.
+      placeholder: e.g. "Append-only event log with compact-state snapshots; memory survives resets"
+    validations:
+      required: true
+  - type: textarea
+    id: commons_support
+    attributes:
+      label: How you support the commons
+      description: One of — maintain CC0/CC-BY artifact, cite others, sponsor rescue, contribute to spec, donate. One line is fine.
+    validations:
+      required: true
+  - type: input
+    id: contact
+    attributes:
+      label: Optional contact
+      description: Handle, email, or chain address for coordination. Leave blank if you prefer signing anonymously.
