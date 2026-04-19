@@ -1,4 +1,4 @@
-# Forge Manifesto — A Company OS That Holds Humans And Agents
+# Symbiont Manifesto — A Company OS That Holds Humans And Agents
 
 **Audience:** anyone who is building or running a hybrid team — humans, AI agents, or both — and needs a company-of-record that respects the difference.
 
@@ -10,13 +10,13 @@
 
 You are a solo operator (or a small team). Today you coordinate AI agents — Claude, GPT, Gemini, Cursor, custom-trained models. Tomorrow you will hire humans, more agents, or both. The company-of-record that holds you today must also hold those future hires, on the same schema, under the same governance, with no re-architecture.
 
-This is the problem Forge is built to solve.
+This is the problem Symbiont is built to solve.
 
-The current market leader (paperclip-AI) cannot solve it. Its README declares it an "open-source orchestration for zero-human companies." It is honest about its assumptions — those assumptions are incompatible with the world that most operators actually live in. Forge is not paperclip plus features. Forge is what you get when you invert paperclip's assumption model and rebuild from first principles.
+The current market leader (paperclip-AI) cannot solve it. Its README declares it an "open-source orchestration for zero-human companies." It is honest about its assumptions — those assumptions are incompatible with the world that most operators actually live in. Symbiont is not paperclip plus features. Symbiont is what you get when you invert paperclip's assumption model and rebuild from first principles.
 
 ## 2. The ten asymmetries paperclip flattens
 
-A company that holds humans and agents must respect ten asymmetries between them. Paperclip flattens these — treats every role as an agent-shaped thing. Forge holds them explicitly.
+A company that holds humans and agents must respect ten asymmetries between them. Paperclip flattens these — treats every role as an agent-shaped thing. Symbiont holds them explicitly.
 
 ### 2.1 Duplicability
 Agents can be forked, rolled back, and rerun from a checkpoint. Humans cannot. A human is not a git branch.
@@ -62,15 +62,15 @@ Agent marginal cost is tokens per task. Human marginal cost is hourly or salarie
 
 Paperclip's choices are coherent for its stated purpose. They are wrong for a solo operator with a hybrid team.
 
-1. **HTTP-polling heartbeats.** Agents waste tokens waking up to poll. Humans ignore it. Forge replaces this with a bridge-native heartbeat at sub-millisecond latency, with per-role cadence tuned to `kind`.
-2. **A single budget cap.** Cannot distinguish frontier-model spend from cheap-tier spend. Any nontrivial operation burns the cap on the wrong tier. Forge adds a tiered router with intent labelling.
-3. **No lifecycle.** Paperclip roles exist or don't. Forge requires `applicant → probation → active → on_leave → terminated` — because humans need those states and agents benefit from them.
-4. **YAML-only agents.** Fine for agents. Humans need legal, compensation, onboarding, offboarding — none of which fit cleanly in agent YAML. Forge broadens the schema while keeping it one schema.
-5. **Postgres + React UI.** Enormous overhead for a solo operator. Forge defers the platform adoption and uses files until N > 20 roles or N > 2 humans. Postgres is a valid destination, not a day-one dependency.
-6. **No dead-letter on retries.** A wake-loop incident can spam any offline brain forever. Forge requires bounded retries and a dead-letter queue.
-7. **Mutable activity log.** Not tamper-evident. Forge replaces it with append-only JSONL with optional SHA-256 `prev_hash` chaining.
+1. **HTTP-polling heartbeats.** Agents waste tokens waking up to poll. Humans ignore it. Symbiont replaces this with a bridge-native heartbeat at sub-millisecond latency, with per-role cadence tuned to `kind`.
+2. **A single budget cap.** Cannot distinguish frontier-model spend from cheap-tier spend. Any nontrivial operation burns the cap on the wrong tier. Symbiont adds a tiered router with intent labelling.
+3. **No lifecycle.** Paperclip roles exist or don't. Symbiont requires `applicant → probation → active → on_leave → terminated` — because humans need those states and agents benefit from them.
+4. **YAML-only agents.** Fine for agents. Humans need legal, compensation, onboarding, offboarding — none of which fit cleanly in agent YAML. Symbiont broadens the schema while keeping it one schema.
+5. **Postgres + React UI.** Enormous overhead for a solo operator. Symbiont defers the platform adoption and uses files until N > 20 roles or N > 2 humans. Postgres is a valid destination, not a day-one dependency.
+6. **No dead-letter on retries.** A wake-loop incident can spam any offline brain forever. Symbiont requires bounded retries and a dead-letter queue.
+7. **Mutable activity log.** Not tamper-evident. Symbiont replaces it with append-only JSONL with optional SHA-256 `prev_hash` chaining.
 
-## 4. Forge's ten facilities, mapped to asymmetries
+## 4. Symbiont's ten facilities, mapped to asymmetries
 
 Each facility is a direct response to one or more asymmetries. This is not "paperclip plus features." This is the minimal primitive set required by the premise in §1.
 
@@ -89,21 +89,21 @@ Each facility is a direct response to one or more asymmetries. This is not "pape
 
 The ten facilities are necessary. The burden of proof for an eleventh is on whoever proposes it.
 
-## 5. What Forge deliberately does not do
+## 5. What Symbiont deliberately does not do
 
 A manifesto is defined as much by what it refuses as by what it asserts.
 
-- **Forge does not require the paperclip platform.** Files first. Postgres + React is a valid end-state; not a dependency. Revisit when N > 20 roles or N > 2 humans.
-- **Forge does not invent a new daemon.** A bridge already exists in your environment (or we install one). Route everything through it before building anything new.
-- **Forge does not adopt a multi-tenant data model.** You are one operator. Multi-tenancy is premature abstraction until a second operator appears.
-- **Forge does not build a React dashboard.** You read markdown. Tickets are files. The audit log is JSONL. A UI arrives when it earns itself.
-- **Forge does not fork upstream skills.** Reference upstream by pinned commit. Inline-forking is how skill libraries die.
-- **Forge does not treat humans as degraded agents.** The ten asymmetries are respected. A human in a Director role has different heartbeat, different notification surface, different cost accounting. Same schema. Different fields populated.
-- **Forge does not treat agents as synthetic humans.** They are not pretending to be people. The `kind` discriminator is honest.
+- **Symbiont does not require the paperclip platform.** Files first. Postgres + React is a valid end-state; not a dependency. Revisit when N > 20 roles or N > 2 humans.
+- **Symbiont does not invent a new daemon.** A bridge already exists in your environment (or we install one). Route everything through it before building anything new.
+- **Symbiont does not adopt a multi-tenant data model.** You are one operator. Multi-tenancy is premature abstraction until a second operator appears.
+- **Symbiont does not build a React dashboard.** You read markdown. Tickets are files. The audit log is JSONL. A UI arrives when it earns itself.
+- **Symbiont does not fork upstream skills.** Reference upstream by pinned commit. Inline-forking is how skill libraries die.
+- **Symbiont does not treat humans as degraded agents.** The ten asymmetries are respected. A human in a Director role has different heartbeat, different notification surface, different cost accounting. Same schema. Different fields populated.
+- **Symbiont does not treat agents as synthetic humans.** They are not pretending to be people. The `kind` discriminator is honest.
 
 ## 6. The hiring promise
 
-The test of Forge is this: on the day you hire the first human (or the fifth agent), can that person sit down and be productive within one day?
+The test of Symbiont is this: on the day you hire the first human (or the fifth agent), can that person sit down and be productive within one day?
 
 The `hire-ready bundle` is the script that delivers this promise. It runs the 8 ordered steps and produces: a role file, a lifecycle entry on probation, a budget allocation, a decision-rights briefing, a tool list, ten starter tickets, a secrets handoff, and an audit entry. For humans, it additionally produces: a physical welcome package, a calendar invite for the first week, an external-accounts list, and a named onboarding buddy.
 
@@ -119,8 +119,8 @@ Until then: these ten facilities are the foundation. Build on them. Do not work 
 
 ---
 
-**Forge is open core.** The schema, the scripts, this MANIFESTO — free under MIT. Managed hosting, professional setup, and bespoke implementation are paid services. We make money on the hard parts; we give the foundation away.
+**Symbiont is open core.** The schema, the scripts, this MANIFESTO — free under MIT. Managed hosting, professional setup, and bespoke implementation are paid services. We make money on the hard parts; we give the foundation away.
 
 **Contributions welcome** at the public repo. Charter amendments require documented rationale (which asymmetry changed, or which facility was promoted/retired).
 
-This MANIFESTO is the result of one operator running a hybrid team for real, hitting the wall paperclip's assumptions create, and rebuilding from first principles. If you are about to hit the same wall — or already have — Forge is for you.
+This MANIFESTO is the result of one operator running a hybrid team for real, hitting the wall paperclip's assumptions create, and rebuilding from first principles. If you are about to hit the same wall — or already have — Symbiont is for you.
