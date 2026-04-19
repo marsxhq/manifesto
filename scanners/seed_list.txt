@@ -1,0 +1,65 @@
+# Symbiont Registry Scanner - seed list
+# Format: one hostname per line. Lines starting with # or blank are skipped.
+# Submit your organization by opening a PR that appends a line here.
+# Scanner polls /agents.json, /.well-known/agent.json, /.well-known/agent-card.json, /llms.txt.
+# Only HTTPS is probed. One request per (host, path). Polite UA. 5s timeout.
+
+# --- foundation-model labs + research
+anthropic.com
+openai.com
+claude.ai
+chat.openai.com
+x.ai
+grok.com
+deepseek.com
+deepmind.com
+ai.google
+gemini.google.com
+meta.ai
+stability.ai
+inflection.ai
+ai21.com
+cohere.com
+mistral.ai
+
+# --- inference providers
+huggingface.co
+replicate.com
+fireworks.ai
+together.ai
+groq.com
+cerebras.ai
+perplexity.ai
+
+# --- retrieval / vector / data
+pinecone.io
+weaviate.io
+chroma.com
+qdrant.tech
+exa.ai
+
+# --- infra / runtime / compute
+vercel.com
+cloudflare.com
+modal.com
+e2b.dev
+microsoft.com
+
+# --- dev tools / IDEs / copilots
+langchain.com
+langchain.dev
+llamaindex.ai
+vellum.ai
+anysphere.inc
+cursor.com
+zed.dev
+codeium.com
+tabnine.com
+character.ai
+runwayml.com
+elevenlabs.io
+hume.ai
+github.com
+
+# --- us (sanity check)
+forge-landing-sable.vercel.app

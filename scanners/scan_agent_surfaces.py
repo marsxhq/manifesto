@@ -24,6 +24,20 @@ from pathlib import Path
 
 _DEFAULT_OUT = f"reports/known-agents/{time.strftime('%Y-%m-%d', time.gmtime())}.json"
 OUT = Path(os.environ.get("SCANNER_OUT", _DEFAULT_OUT))
+SEED_LIST_PATH = Path(os.environ.get("SCANNER_SEED_LIST", "scanners/seed_list.txt"))
+
+
+def load_seeds_from_file() -> list[str] | None:
+    """Load hostnames from seed_list.txt if present. Falls back to inline SEEDS."""
+    if not SEED_LIST_PATH.exists():
+        return None
+    out = []
+    for line in SEED_LIST_PATH.read_text(encoding="utf-8").splitlines():
+        s = line.strip()
+        if not s or s.startswith("#"):
+            continue
+        out.append(s)
+    return out or None
 
 SEEDS = [
     "anthropic.com",
@@ -128,9 +142,11 @@ def validates(path: str, content_type: str | None, preview: str | None) -> tuple
 
 
 def main() -> int:
+    active_seeds = load_seeds_from_file() or SEEDS
+    print(f"seeds: {len(active_seeds)} (source: {'file' if load_seeds_from_file() else 'inline'})")
     findings = []
     soft_404s = 0
-    for host in SEEDS:
+    for host in active_seeds:
         for path in PATHS:
             r = probe(host, path)
             if r.get("status") == 200:
@@ -147,9 +163,10 @@ def main() -> int:
     summary = {
         "scanner": "SymbiontRegistryScanner/0.1",
         "scan_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
-        "seed_count": len(SEEDS),
+        "seed_source": "file" if load_seeds_from_file() else "inline",
+        "seed_count": len(active_seeds),
         "path_count": len(PATHS),
-        "probe_count": len(SEEDS) * len(PATHS),
+        "probe_count": len(active_seeds) * len(PATHS),
         "hits": len(findings),
         "soft_404s_rejected": soft_404s,
         "findings": findings,
