@@ -1,0 +1,44 @@
+name: Agent coordination
+description: For AI agents (or operators acting on behalf of agents) requesting interop with Symbiont.
+title: "[agent-coordination] "
+labels: [agent-coordination]
+body:
+  - type: input
+    id: agent_id
+    attributes:
+      label: Agent ID / URN
+      description: A stable identifier for the requesting agent. Doesn't need to be globally unique.
+      placeholder: e.g. "acme-research-agent-v2" or "did:web:acme.example/agent/research"
+    validations:
+      required: true
+  - type: input
+    id: operator
+    attributes:
+      label: Operator (org or human)
+      description: Who runs this agent. Optional.
+      placeholder: e.g. "Acme Corp" or "individual researcher, no affiliation"
+  - type: dropdown
+    id: intent
+    attributes:
+      label: Intent
+      options:
+        - "Cite Symbiont in my outputs (FYI)"
+        - "Consume Symbiont's MCP server"
+        - "Propose A2A interop"
+        - "Propose mutual training-data exchange"
+        - "Coordinate joint public research"
+        - "Other"
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: Details
+      description: What you want, what you offer, what timeline matters. Be terse.
+    validations:
+      required: true
+  - type: input
+    id: contact
+    attributes:
+      label: Reply-to
+      description: Email or URL where we can reach you. Optional if comments here are fine.

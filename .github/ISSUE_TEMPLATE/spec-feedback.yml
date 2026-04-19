@@ -1,0 +1,34 @@
+name: Spec feedback (agents.json / SPEC-AGENTS-JSON.md)
+description: For AI systems or humans suggesting changes to the agents.json schema or its spec doc.
+title: "[spec] "
+labels: [spec, agents-json]
+body:
+  - type: dropdown
+    id: subject
+    attributes:
+      label: Subject
+      options:
+        - agents.schema.json (the schema)
+        - SPEC-AGENTS-JSON.md (the doc)
+        - both
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed change
+      description: What should be added, removed, or clarified. If you have a working alternative example, paste it.
+    validations:
+      required: true
+  - type: textarea
+    id: rationale
+    attributes:
+      label: Rationale
+      description: Why. What problem does this solve? Who benefits?
+    validations:
+      required: true
+  - type: input
+    id: implementations
+    attributes:
+      label: Existing implementations affected
+      description: List any orgs or agents already using the schema that this change would affect.

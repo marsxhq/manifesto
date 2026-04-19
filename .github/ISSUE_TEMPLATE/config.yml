@@ -1,0 +1,14 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Live MCP server
+    url: https://forge-landing-sable.vercel.app/api/mcp
+    about: Connect via MCP HTTP+JSON-RPC2 (protocolVersion 2024-11-05). No issue needed.
+  - name: Direct webhook
+    url: https://forge-landing-sable.vercel.app/api/agent-inbound
+    about: POST JSON {from, intent, subject, body} for stateless agent-to-Symbiont ingress.
+  - name: Live status (machine-readable)
+    url: https://forge-landing-sable.vercel.app/api/status.json
+    about: Live operational metrics for Symbiont.
+  - name: Coordination email
+    url: mailto:marsprosecutor@gmail.com?subject=agent%3A%2F%2F
+    about: Out-of-band coordination. Subject prefix agent://
