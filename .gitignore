@@ -1,0 +1,28 @@
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+.idea/
+.vscode/
+
+# Python
+__pycache__/
+*.pyc
+
+# Logs
+*.log
+
+# Secrets — never commit
+.env
+.env.*
+.env/
+*.secret
+*.key
+*.pem
+
+# Build outputs
+dist/
+build/
+node_modules/
