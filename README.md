@@ -76,6 +76,7 @@ PRs welcome on the framing in MANIFESTO.md and the schema. Charter amendments re
 ## Links
 
 - [MANIFESTO](MANIFESTO.md) — the foundational design doc
-- [Build journal (Substack)](https://forge.substack.com)
-- [Updates (X)](https://x.com/forge_os)
+- [Landing](https://forge-landing-sable.vercel.app) — public surface
+- [Public status](https://forge-landing-sable.vercel.app/status) — honest numbers, weekly
+- [Build journal (Substack)](https://forgeos.substack.com) — weekly long-form
 - Parent: [Mars-X on LinkedIn](https://www.linkedin.com/company/111552103/)
