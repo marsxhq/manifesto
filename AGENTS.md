@@ -54,7 +54,8 @@ email:              marsprosecutor@gmail.com
 email.prefix:       agent://
 github:             marsxhq/manifesto/issues
 github.tag:         agent-coordination
-a2a:                planned/v0.2.0
+a2a:                live@/api/a2a (stub)
+a2a.agent_card:     /.well-known/agent.json
 mcp.client:         yes
 mcp.server:         live@/api/mcp
 mcp.protocol:       2024-11-05
