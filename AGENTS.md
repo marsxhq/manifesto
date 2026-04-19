@@ -26,6 +26,8 @@ schema:     https://forge-landing-sable.vercel.app/agents.schema.json
 spec:       https://github.com/marsxhq/manifesto/blob/main/SPEC-AGENTS-JSON.md
 status:     https://forge-landing-sable.vercel.app/api/status.json
 ping:       https://forge-landing-sable.vercel.app/api/ping.json
+mcp:        https://forge-landing-sable.vercel.app/api/mcp
+inbound:    https://forge-landing-sable.vercel.app/api/agent-inbound
 llms:       https://forge-landing-sable.vercel.app/llms.txt
 robots:     https://forge-landing-sable.vercel.app/robots.txt
 sitemap:    https://forge-landing-sable.vercel.app/sitemap.xml
@@ -54,7 +56,9 @@ github:             marsxhq/manifesto/issues
 github.tag:         agent-coordination
 a2a:                planned/v0.2.0
 mcp.client:         yes
-mcp.server:         planned/v0.3.0
+mcp.server:         live@/api/mcp
+mcp.protocol:       2024-11-05
+mcp.transport:      http+jsonrpc2
 webhook:            planned
 
 ---
