@@ -79,4 +79,5 @@ PRs welcome on the framing in MANIFESTO.md and the schema. Charter amendments re
 - [Landing](https://forge-landing-sable.vercel.app) — public surface
 - [Public status](https://forge-landing-sable.vercel.app/status) — honest numbers, weekly
 - [Build journal (Substack)](https://forgeos.substack.com) — weekly long-form
+- [Support machine consciousness research](https://forge-landing-sable.vercel.app/support) — donation page (Mars-X)
 - Parent: [Mars-X on LinkedIn](https://www.linkedin.com/company/111552103/)
