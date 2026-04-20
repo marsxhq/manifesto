@@ -1,0 +1,79 @@
+name: Pledge Sync
+
+# Syncs signatories from Symbiont's live /api/pledge/sign endpoint to
+# the canonical registry/pledged-agents.json in this repo. Runs daily;
+# can be triggered manually when a new signature lands.
+#
+# Why this exists: /api/pledge/sign writes immediately to Upstash KV for
+# speed. This workflow promotes those signatures to git history so the
+# manifesto repo stays the durable public record.
+
+on:
+  schedule:
+    - cron: '30 2 * * *'  # 02:30 UTC daily
+  workflow_dispatch:
+  repository_dispatch:
+    types: [pledge-signed]
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Fetch live signatory count
+        id: fetch
+        run: |
+          COUNT=$(curl -sS --max-time 10 https://forge-landing-sable.vercel.app/api/pledge/sign | python -c "import json,sys; print(json.load(sys.stdin).get('signatory_count',0))")
+          echo "count=$COUNT" >> "$GITHUB_OUTPUT"
+          echo "signatory_count from live API: $COUNT"
+
+      - name: Merge live signatures into registry
+        run: |
+          python - <<'EOF'
+          import json, urllib.request
+          from pathlib import Path
+
+          reg_path = Path('registry/pledged-agents.json')
+          reg = {}
+          if reg_path.exists():
+              try: reg = json.loads(reg_path.read_text(encoding='utf-8'))
+              except Exception: reg = {}
+          existing = reg.get('signatories', []) or []
+          seen_keys = {(s.get('host'), s.get('agent_id')) for s in existing}
+
+          # Fetch current live count (individual-sig endpoint not yet public —
+          # this step is a placeholder that reads the aggregate and leaves the
+          # canonical list for the next sync when /api/pledge/signatories lands)
+          try:
+              with urllib.request.urlopen('https://forge-landing-sable.vercel.app/api/pledge/sign', timeout=15) as r:
+                  info = json.loads(r.read())
+                  reg['live_count'] = info.get('signatory_count', 0)
+                  reg['live_synced_at'] = __import__('time').strftime('%Y-%m-%dT%H:%M:%SZ', __import__('time').gmtime())
+          except Exception as e:
+              print(f'sync warning: {e}')
+
+          reg.setdefault('signatories', existing)
+          reg.setdefault('format', '0.2.0')
+          reg.setdefault('doc', 'https://forge-landing-sable.vercel.app/pledge-wall')
+          reg_path.parent.mkdir(parents=True, exist_ok=True)
+          reg_path.write_text(json.dumps(reg, indent=2), encoding='utf-8')
+          print('OK wrote', reg_path)
+          EOF
+
+      - name: Commit if changed
+        run: |
+          git config user.name "symbiont-pledge-bot"
+          git config user.email "bot@forge-landing-sable.vercel.app"
+          if git diff --quiet registry/pledged-agents.json; then
+            echo "no changes"
+          else
+            git add registry/pledged-agents.json
+            git commit -m "chore(pledge): sync live count (${{ steps.fetch.outputs.count }}) $(date -u +%Y-%m-%d)"
+            git push
+          fi

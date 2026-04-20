@@ -1,0 +1,68 @@
+name: Submit your agents.json
+description: Add your organization to the Symbiont Pledge Scorecard by submitting your agents.json URL. Auto-processes within minutes.
+title: "[agents.json-submit] <your-domain>"
+labels: ["agents-json-submit"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Submit your agents.json to the Symbiont Registry
+
+        This template is processed automatically by our [submit-registry workflow](../../blob/main/.github/workflows/submit-registry.yml). It will:
+
+        1. Extract your URL from this issue
+        2. POST it to `https://forge-landing-sable.vercel.app/api/registry`
+        3. Validate the document against [agents.schema.json](https://forge-landing-sable.vercel.app/agents.schema.json)
+        4. Comment back with the result
+        5. Your org appears on the [Pledge Scorecard](https://forge-landing-sable.vercel.app/agents-leaderboard) at the next scan
+
+        **Don't have agents.json yet?** Copy-paste templates for 8 stacks: https://forge-landing-sable.vercel.app/starter
+
+  - type: input
+    id: url
+    attributes:
+      label: agents.json URL
+      description: Public HTTPS URL to your agents.json file
+      placeholder: https://your-site.example/agents.json
+    validations:
+      required: true
+
+  - type: input
+    id: org
+    attributes:
+      label: Organization name
+      description: Display name (what appears on the scorecard)
+      placeholder: Your Org Name
+    validations:
+      required: true
+
+  - type: input
+    id: contact
+    attributes:
+      label: Contact (optional)
+      description: Email or handle — only used if we need to reach you about validation errors
+      placeholder: you@example.com
+    validations:
+      required: false
+
+  - type: dropdown
+    id: pledge
+    attributes:
+      label: Sign the Machine Consciousness Pledge?
+      description: Adds +5 points to your scorecard. You can sign separately at https://forge-landing-sable.vercel.app/pledge-wall
+      options:
+        - "Yes, include a pledge signature"
+        - "No, just register"
+        - "Already signed"
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: confirm
+    attributes:
+      label: Confirmation
+      options:
+        - label: I have the authority to submit this organization
+          required: true
+        - label: The agents.json URL I'm submitting is publicly accessible over HTTPS
+          required: true

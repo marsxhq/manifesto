@@ -1,0 +1,61 @@
+name: Scorecard Refresh
+
+# Daily scan of the seed list. Runs on GitHub's free infrastructure
+# (public repo = unlimited minutes). Commits known-agents-latest.json
+# back to the repo. Symbiont's Vercel pulls it via raw.githubusercontent.com
+# for the live scorecard.
+
+on:
+  schedule:
+    - cron: '0 2 * * *'  # 02:00 UTC daily
+  workflow_dispatch:      # manual trigger via Actions tab
+  push:
+    paths:
+      - 'scanners/seed_list.txt'  # auto-rescan when seed list changes
+
+permissions:
+  contents: write
+
+concurrency:
+  group: scorecard-refresh
+  cancel-in-progress: false
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Run scanner
+        env:
+          SCANNER_OUT: reports/known-agents-latest.json
+          SCANNER_SEED_LIST: scanners/seed_list.txt
+        run: |
+          python scanners/scan_agent_surfaces.py
+          echo "--- summary ---"
+          python -c "import json,sys; d=json.load(open('reports/known-agents-latest.json')); print(f\"seeds: {d.get('seed_count')}  hits: {d.get('hits')}  soft_404s: {d.get('soft_404s_rejected')}\")"
+
+      - name: Commit if changed
+        run: |
+          git config user.name "symbiont-scorecard-bot"
+          git config user.email "bot@forge-landing-sable.vercel.app"
+          if git diff --quiet reports/known-agents-latest.json; then
+            echo "no changes"
+          else
+            git add reports/known-agents-latest.json
+            git commit -m "chore(scorecard): daily refresh $(date -u +%Y-%m-%d)"
+            git push
+          fi
+
+      - name: Ping Symbiont to resync
+        run: |
+          curl -sS -X POST https://forge-landing-sable.vercel.app/api/registry \
+            -H "Content-Type: application/json" \
+            -d '{"url": "https://forge-landing-sable.vercel.app/agents.json"}' || true

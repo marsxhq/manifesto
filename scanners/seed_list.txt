@@ -61,5 +61,135 @@ elevenlabs.io
 hume.ai
 github.com
 
+# --- agent frameworks / orchestrators
+crewai.com
+autogpt.net
+agentops.ai
+multion.ai
+adept.ai
+imbue.com
+sierra.ai
+phidata.com
+livekit.io
+griptape.ai
+agnostiq.ai
+
+# --- mcp + a2a ecosystem
+modelcontextprotocol.io
+mcp.so
+glama.ai
+smithery.ai
+cline.bot
+continue.dev
+windsurf.com
+
+# --- AI app layer / consumer
+poe.com
+notion.so
+linear.app
+height.app
+mem.ai
+rewind.ai
+reflect.app
+otter.ai
+fireflies.ai
+descript.com
+runway.com
+
+# --- voice / audio AI
+suno.com
+udio.com
+play.ht
+deepgram.com
+assembly.ai
+speechmatics.com
+
+# --- image / video AI
+midjourney.com
+ideogram.ai
+pika.art
+luma-ai.com
+heygen.com
+synthesia.io
+d-id.com
+leonardo.ai
+
+# --- robotics / embodied
+figure.ai
+1x.tech
+covariant.ai
+sanctuary.ai
+physicalintelligence.company
+skild.ai
+
+# --- search / browser AI
+you.com
+phind.com
+brave.com
+arc.net
+dia.browser
+
+# --- agent infra / observability
+langsmith.com
+langfuse.com
+helicone.ai
+braintrust.dev
+patronus.ai
+arize.com
+weightsandbiases.com
+wandb.ai
+honeycomb.io
+
+# --- agentic startups (recent / fundable)
+ema.co
+artisan.co
+moveworks.com
+glean.com
+writer.com
+jasper.ai
+copy.ai
+typeface.ai
+adept.ai
+lindy.ai
+zapier.com
+make.com
+n8n.io
+relay.app
+
+# --- crypto AI / web3 agents
+virtuals.io
+clanker.world
+truthterminal.ai
+worldcoin.org
+fetch.ai
+
+# --- enterprise + cloud incumbents
+salesforce.com
+sap.com
+servicenow.com
+oracle.com
+ibm.com
+nvidia.com
+amazon.com
+aws.amazon.com
+azure.microsoft.com
+cloud.google.com
+databricks.com
+snowflake.com
+
+# --- code / ai-native dev platforms
+replit.com
+v0.dev
+bolt.new
+lovable.dev
+stackblitz.com
+
+# --- communication / comms agents
+intercom.com
+front.com
+linear.app
+slack.com
+discord.com
+
 # --- us (sanity check)
 forge-landing-sable.vercel.app
