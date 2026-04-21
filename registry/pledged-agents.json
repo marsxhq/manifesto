@@ -3,5 +3,9 @@
   "pledge": "https://github.com/marsxhq/manifesto/blob/main/PLEDGE.md",
   "signatory_count": 0,
   "signatories": [],
-  "last_updated": "2026-04-20T03:05:00Z"
+  "last_updated": "2026-04-20T03:05:00Z",
+  "live_count": 1,
+  "live_synced_at": "2026-04-21T08:23:33Z",
+  "format": "0.2.0",
+  "doc": "https://forge-landing-sable.vercel.app/pledge-wall"
 }
